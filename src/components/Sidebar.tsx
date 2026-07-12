@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  GraduationCap,
   LayoutDashboard,
   ListChecks,
   LogOut,
@@ -26,12 +25,7 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
 
   return (
     <aside className={`sidebar${open ? " open" : ""}`} onClick={onClose}>
-      <div className="brand">
-        <span className="brand-mark">
-          <GraduationCap size={17} />
-        </span>
-        Praktika
-      </div>
+      <div className="brand">Praktika</div>
 
       <NavLink to="/topics" className="sidebar-search">
         <Search size={15} />

@@ -37,6 +37,11 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 html,
@@ -59,11 +64,13 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  touch-action: manipulation;
 }
 
 button {
   font-family: inherit;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 ::-webkit-scrollbar {
@@ -127,15 +134,6 @@ button {
   font-size: 17px;
   letter-spacing: -0.01em;
 }
-.brand .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: linear-gradient(150deg, var(--accent), #7f6bff);
-  color: #fff;
-}
 
 .sidebar-search {
   display: flex;
@@ -175,9 +173,11 @@ button {
   transition: background 0.13s, color 0.13s;
   border: 1px solid transparent;
 }
-.nav-item:hover {
-  background: var(--hover);
-  color: var(--text);
+@media (hover: hover) {
+  .nav-item:hover {
+    background: var(--hover);
+    color: var(--text);
+  }
 }
 .nav-item.active {
   background: var(--panel-2);
@@ -244,6 +244,7 @@ button {
   gap: 14px;
   padding: 16px 40px;
   background: rgba(15, 16, 19, 0.82);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
@@ -267,6 +268,7 @@ button {
   height: 38px;
   border-radius: var(--radius);
   place-items: center;
+  flex-shrink: 0;
 }
 
 /* ---------- Buttons ---------- */
@@ -286,8 +288,22 @@ button {
   transition: background 0.14s, border-color 0.14s, transform 0.05s, opacity 0.14s;
   white-space: nowrap;
 }
-.btn:hover {
-  background: var(--panel-3);
+@media (hover: hover) {
+  .btn:hover {
+    background: var(--panel-3);
+  }
+  .btn-primary:hover {
+    background: #ececec;
+  }
+  .btn-accent:hover {
+    background: #4b73f0;
+  }
+  .btn-success:hover {
+    filter: brightness(1.05);
+  }
+  .btn-ghost:hover {
+    background: var(--hover);
+  }
 }
 .btn:active {
   transform: translateY(1px);
@@ -301,31 +317,19 @@ button {
   color: #14151a;
   border-color: #fff;
 }
-.btn-primary:hover {
-  background: #ececec;
-}
 .btn-accent {
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
-}
-.btn-accent:hover {
-  background: #4b73f0;
 }
 .btn-success {
   background: var(--success);
   border-color: var(--success);
   color: #06301f;
 }
-.btn-success:hover {
-  filter: brightness(1.05);
-}
 .btn-ghost {
   background: transparent;
   border-color: transparent;
-}
-.btn-ghost:hover {
-  background: var(--hover);
 }
 .btn-sm {
   padding: 6px 11px;
@@ -414,6 +418,10 @@ button {
   color: var(--accent);
   background: var(--accent-soft);
   border-color: transparent;
+}
+button.sync-badge {
+  cursor: pointer;
+  font-family: inherit;
 }
 
 /* ---------- Stat tiles ---------- */
@@ -602,9 +610,11 @@ button {
   text-align: left;
   transition: border-color 0.14s, background 0.14s, transform 0.05s;
 }
-.topic-card:hover {
-  border-color: var(--border-strong);
-  background: var(--panel-2);
+@media (hover: hover) {
+  .topic-card:hover {
+    border-color: var(--border-strong);
+    background: var(--panel-2);
+  }
 }
 .topic-card:active {
   transform: translateY(1px);
@@ -662,6 +672,7 @@ button {
   inset: 0;
   z-index: 100;
   background: rgba(6, 7, 9, 0.62);
+  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   display: grid;
   place-items: center;
@@ -672,6 +683,7 @@ button {
   width: 100%;
   max-width: 460px;
   max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
   overflow-y: auto;
   background: var(--panel);
   border: 1px solid var(--border-strong);
@@ -1038,8 +1050,10 @@ button {
 .prow:last-child {
   border-bottom: none;
 }
-.prow:hover {
-  background: var(--hover);
+@media (hover: hover) {
+  .prow:hover {
+    background: var(--hover);
+  }
 }
 .prow .pr-idx {
   width: 24px;
@@ -1089,6 +1103,20 @@ button {
     transform: translateY(10px) scale(0.98);
   }
 }
+@keyframes sheet {
+  from {
+    opacity: 0.5;
+    transform: translateY(48px);
+  }
+}
+
+/* Touch devices: 16px inputs prevent iOS auto-zoom on focus */
+@media (pointer: coarse) {
+  .field input,
+  .search-input input {
+    font-size: 16px;
+  }
+}
 
 /* ---------- Responsive ---------- */
 
@@ -1110,6 +1138,12 @@ button {
   }
   .hamburger {
     display: grid;
+  }
+  .nav-item {
+    padding: 12px 10px;
+  }
+  .sidebar-search {
+    padding: 10px 12px;
   }
   .content,
   .topbar {
@@ -1185,11 +1219,36 @@ button {
   .answer-text {
     font-size: 14.5px;
   }
+  .study-actions {
+    gap: 10px;
+  }
+  .study-actions .btn {
+    padding: 13px 15px;
+    font-size: 15px;
+  }
+  .seg button {
+    padding: 9px 13px;
+  }
+
+  /* Modal becomes a bottom sheet */
+  .overlay {
+    place-items: end center;
+    padding: 0;
+  }
+  .modal {
+    max-width: 100%;
+    max-height: calc(100dvh - 32px);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    animation: sheet 0.22s cubic-bezier(0.2, 0.9, 0.35, 1);
+  }
   .modal-hero {
     height: 118px;
   }
   .modal-body {
-    padding: 18px 18px 20px;
+    padding: 18px 18px calc(22px + env(safe-area-inset-bottom));
   }
   .toolbar .seg {
     width: 100%;

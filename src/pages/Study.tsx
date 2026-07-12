@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { ArrowLeft, Check, Eye, RotateCcw } from "lucide-react";
 import { Topbar } from "@/components/Topbar";
@@ -23,6 +23,11 @@ export function Study() {
 
   const [queue] = useState<Question[]>(() => buildQueue(topicId, review));
   const [index, setIndex] = useState(0);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    rootRef.current?.closest(".main")?.scrollTo({ top: 0 });
+  }, [index]);
   const [revealed, setRevealed] = useState(false);
   const [known, setKnown] = useState(0);
   const [repeat, setRepeat] = useState(0);
@@ -151,7 +156,7 @@ export function Study() {
     <>
       <Topbar crumbs={crumbs} />
       <div className="content">
-        <div className="study">
+        <div className="study" ref={rootRef}>
           <div className="study-head">
             <div>
               <div className="sh-title">{title}</div>
