@@ -1,7 +1,16 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { chooseGuestMode, useAuth } from "@/auth/AuthContext";
+import { supabase } from "@/lib/supabase";
+
+const YANDEX_ERRORS: Record<string, string> = {
+  not_configured: "Вход через Яндекс ещё не настроен. Войдите по почте и паролю.",
+  no_email:
+    "Яндекс не поделился адресом почты. Разрешите доступ к email или войдите по почте и паролю.",
+};
+const YANDEX_ERROR_FALLBACK =
+  "Не получилось войти через Яндекс. Попробуйте ещё раз или войдите по почте и паролю.";
 
 const YandexIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
@@ -47,6 +56,34 @@ export function AuthPage() {
   const [note, setNote] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
+  // Returning from the Yandex bridge: turn token_hash into a session,
+  // or surface the error it reported.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tokenHash = params.get("token_hash");
+    const yandexError = params.get("yandex_error");
+    if (!tokenHash && !yandexError) return;
+    window.history.replaceState({}, "", "/auth");
+
+    if (yandexError) {
+      setError(YANDEX_ERRORS[yandexError] ?? YANDEX_ERROR_FALLBACK);
+      return;
+    }
+    if (tokenHash && supabase) {
+      setBusy(true);
+      setNote("Входим через Яндекс…");
+      void supabase.auth
+        .verifyOtp({ token_hash: tokenHash, type: "email" })
+        .then(({ error }) => {
+          setBusy(false);
+          setNote(null);
+          if (error) setError(YANDEX_ERROR_FALLBACK);
+          // On success AuthContext picks up the session and this page
+          // redirects to the dashboard by itself.
+        });
+    }
+  }, []);
+
   // Already signed in (or Supabase not configured) — the screen is pointless.
   if (!loading && (user || !enabled)) return <Navigate to="/" replace />;
 
@@ -78,10 +115,12 @@ export function AuthPage() {
   };
 
   const onYandex = () => {
-    setError(null);
-    setNote(
-      "Вход через Яндекс скоро подключим. Пока войдите по почте и паролю — это займёт минуту.",
-    );
+    if (import.meta.env.DEV) {
+      setError(null);
+      setNote("В dev-режиме вход через Яндекс недоступен — проверяйте на задеплоенном сайте.");
+      return;
+    }
+    window.location.href = "/api/yandex-start";
   };
 
   return (

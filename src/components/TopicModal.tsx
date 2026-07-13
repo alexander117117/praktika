@@ -1,4 +1,4 @@
-import { CheckCircle2, RotateCcw } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import { DuoIcon } from "./DuoIcon";
 import { Modal } from "./Modal";
 import type { Topic } from "@/lib/types";
@@ -37,7 +37,7 @@ export function TopicModal({ topic, stat, onStart, onClose }: Props) {
             </div>
           </div>
           <div className="check-item">
-            <CheckCircle2 size={17} />
+            <DuoIcon name="check" size={17} />
             <div>
               <div className="ci-name">Выучено {stat.learned}</div>
               <div className="ci-sub">На повторении {stat.learning}, не начато {stat.fresh}</div>

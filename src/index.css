@@ -473,27 +473,21 @@ button.sync-badge {
   font-weight: 600;
 }
 .stat-icon {
-  width: 26px;
-  height: 26px;
-  border-radius: 7px;
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .stat-icon.green {
   color: var(--success);
-  background: var(--success-soft);
 }
 .stat-icon.amber {
   color: var(--warning);
-  background: var(--warning-soft);
 }
 .stat-icon.blue {
   color: var(--accent);
-  background: var(--accent-soft);
 }
 .stat-icon.gray {
   color: var(--text-2);
-  background: var(--hover);
 }
 
 /* ---------- Overview / hero ---------- */

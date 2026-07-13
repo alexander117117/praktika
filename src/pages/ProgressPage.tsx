@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CheckCircle2, Circle } from "lucide-react";
+import { Circle } from "lucide-react";
 import { DuoIcon } from "@/components/DuoIcon";
 import { Topbar } from "@/components/Topbar";
 import { ProgressRing } from "@/components/ProgressRing";
@@ -58,7 +58,7 @@ export function ProgressPage() {
             <div className="stat">
               <div className="stat-label">
                 <span className="stat-icon green">
-                  <CheckCircle2 size={15} />
+                  <DuoIcon name="check" size={15} />
                 </span>
                 Выучено
               </div>
