@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Outlet, useLocation, useOutletContext } from "react-router-dom";
+import { Navigate, Outlet, useLocation, useOutletContext } from "react-router-dom";
+import { hasGuestChoice, useAuth } from "@/auth/AuthContext";
 import { Sidebar } from "./Sidebar";
 
 export interface LayoutCtx {
@@ -12,6 +13,7 @@ export function useLayout() {
 }
 
 export function AppLayout() {
+  const { enabled, user, loading } = useAuth();
   const [navOpen, setNavOpen] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
   const loc = useLocation();
@@ -20,6 +22,11 @@ export function AppLayout() {
     setNavOpen(false);
     mainRef.current?.scrollTo(0, 0);
   }, [loc.pathname]);
+
+  // Signed out and never chose guest mode (or just signed out) — auth screen first.
+  if (enabled && !loading && !user && !hasGuestChoice()) {
+    return <Navigate to="/auth" replace />;
+  }
 
   return (
     <div className="app">

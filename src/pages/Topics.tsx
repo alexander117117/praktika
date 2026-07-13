@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Sparkles } from "lucide-react";
+import { Search } from "lucide-react";
+import { DuoIcon } from "@/components/DuoIcon";
 import { Topbar } from "@/components/Topbar";
 import { TopicCard } from "@/components/TopicCard";
 import { TopicModal } from "@/components/TopicModal";
@@ -49,7 +50,7 @@ export function Topics() {
             onClick={() => navigate("/study/all?review=1")}
             aria-label="Начать тренировку"
           >
-            <Sparkles size={16} />
+            <DuoIcon name="sparkle" size={16} />
             <span className="btn-text">Начать тренировку</span>
           </button>
         }

@@ -1,12 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import {
-  LayoutDashboard,
-  ListChecks,
-  LogOut,
-  Search,
-  TrendingUp,
-} from "lucide-react";
+import { LogOut, Search } from "lucide-react";
 import { useAuth } from "@/auth/AuthContext";
+import { DuoIcon } from "./DuoIcon";
 import { TOPICS } from "@/data/topics";
 
 export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -32,16 +27,16 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
 
       <div className="nav-group">
         <NavLink to="/" end className="nav-item">
-          <LayoutDashboard size={18} />
+          <DuoIcon name="dashboard" size={18} />
           Дашборд
         </NavLink>
         <NavLink to="/topics" className="nav-item">
-          <ListChecks size={18} />
+          <DuoIcon name="topics" size={18} />
           Темы
           <span className="nav-count">{TOPICS.length}</span>
         </NavLink>
         <NavLink to="/progress" className="nav-item">
-          <TrendingUp size={18} />
+          <DuoIcon name="progress" size={18} />
           Прогресс
         </NavLink>
       </div>

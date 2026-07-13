@@ -1,4 +1,5 @@
-import { CheckCircle2, Layers, RotateCcw, Sparkles } from "lucide-react";
+import { CheckCircle2, RotateCcw } from "lucide-react";
+import { DuoIcon } from "./DuoIcon";
 import { Modal } from "./Modal";
 import type { Topic } from "@/lib/types";
 import type { Stat } from "@/lib/stats";
@@ -27,7 +28,7 @@ export function TopicModal({ topic, stat, onStart, onClose }: Props) {
         <div className="check-title">Что вас ждёт</div>
         <div className="check-list">
           <div className="check-item">
-            <Layers size={17} />
+            <DuoIcon name="stack" size={17} />
             <div>
               <div className="ci-name">
                 {topic.questions.length} {questionsWord(topic.questions.length)}
@@ -43,7 +44,7 @@ export function TopicModal({ topic, stat, onStart, onClose }: Props) {
             </div>
           </div>
           <div className="check-item">
-            <Sparkles size={17} />
+            <DuoIcon name="sparkle" size={17} />
             <div>
               <div className="ci-name">Самопроверка</div>
               <div className="ci-sub">Прогресс сохраняется автоматически</div>

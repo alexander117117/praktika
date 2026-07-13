@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
-import { useAuth } from "@/auth/AuthContext";
+import { chooseGuestMode, useAuth } from "@/auth/AuthContext";
 
 const YandexIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
@@ -182,7 +182,13 @@ export function AuthPage() {
           </p>
 
           <p className="auth-guest a-el a-d9">
-            <button className="auth-link muted" onClick={() => navigate("/")}>
+            <button
+              className="auth-link muted"
+              onClick={() => {
+                chooseGuestMode();
+                navigate("/");
+              }}
+            >
               Продолжить без аккаунта →
             </button>
           </p>

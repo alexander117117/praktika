@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CheckCircle2, Circle, Clock, Trash2 } from "lucide-react";
+import { CheckCircle2, Circle } from "lucide-react";
+import { DuoIcon } from "@/components/DuoIcon";
 import { Topbar } from "@/components/Topbar";
 import { ProgressRing } from "@/components/ProgressRing";
 import { TopicModal } from "@/components/TopicModal";
@@ -33,7 +34,7 @@ export function ProgressPage() {
         crumbs="Прогресс"
         right={
           <button className="btn btn-ghost btn-sm" onClick={reset} aria-label="Сбросить прогресс">
-            <Trash2 size={15} />
+            <DuoIcon name="trash" size={15} />
             <span className="btn-text">Сбросить</span>
           </button>
         }
@@ -66,7 +67,7 @@ export function ProgressPage() {
             <div className="stat">
               <div className="stat-label">
                 <span className="stat-icon amber">
-                  <Clock size={15} />
+                  <DuoIcon name="calendar" size={15} />
                 </span>
                 На повторении
               </div>

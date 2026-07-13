@@ -22,6 +22,25 @@ interface AuthValue {
 
 const AuthContext = createContext<AuthValue | undefined>(undefined);
 
+/** Remembered "continue without account" choice — gates the app to /auth until made. */
+const GUEST_KEY = "praktika:guest-ok";
+
+export function chooseGuestMode(): void {
+  try {
+    localStorage.setItem(GUEST_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+}
+
+export function hasGuestChoice(): boolean {
+  try {
+    return localStorage.getItem(GUEST_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(isSupabaseEnabled);
@@ -67,6 +86,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { error: error?.message ?? null };
     },
     signOut: async () => {
+      // Forget the guest choice so the sign-out lands on the auth screen.
+      try {
+        localStorage.removeItem(GUEST_KEY);
+      } catch {
+        /* ignore */
+      }
       if (supabase) await supabase.auth.signOut();
     },
   };

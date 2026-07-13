@@ -1,13 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  CheckCircle2,
-  ChevronRight,
-  Circle,
-  Clock,
-  Info,
-  Sparkles,
-} from "lucide-react";
+import { CheckCircle2, ChevronRight, Circle } from "lucide-react";
+import { DuoIcon } from "@/components/DuoIcon";
 import { Topbar } from "@/components/Topbar";
 import { ProgressRing } from "@/components/ProgressRing";
 import { TopicCard } from "@/components/TopicCard";
@@ -44,7 +38,7 @@ export function Dashboard() {
         crumbs="Дашборд"
         right={
           <button className="btn btn-primary" onClick={startReview} aria-label="Начать тренировку">
-            <Sparkles size={16} />
+            <DuoIcon name="sparkle" size={16} />
             <span className="btn-text">Начать тренировку</span>
           </button>
         }
@@ -61,14 +55,14 @@ export function Dashboard() {
 
         {enabled && !user && (
           <div className="info-banner">
-            <Info size={16} />
+            <DuoIcon name="guide" size={16} />
             Вы не вошли в аккаунт. Прогресс хранится в этом браузере — войдите, чтобы
             синхронизировать между устройствами.
           </div>
         )}
         {!enabled && (
           <div className="info-banner">
-            <Info size={16} />
+            <DuoIcon name="guide" size={16} />
             Локальный режим: прогресс сохраняется в браузере. Подключите Supabase (см.
             README), чтобы включить аккаунты и синхронизацию.
           </div>
@@ -135,7 +129,7 @@ export function Dashboard() {
           <div className="stat">
             <div className="stat-label">
               <span className="stat-icon amber">
-                <Clock size={15} />
+                <DuoIcon name="calendar" size={15} />
               </span>
               На повторении
             </div>
@@ -153,7 +147,7 @@ export function Dashboard() {
           <div className="stat">
             <div className="stat-label">
               <span className="stat-icon blue">
-                <Sparkles size={15} />
+                <DuoIcon name="sparkle" size={15} />
               </span>
               Тем всего
             </div>

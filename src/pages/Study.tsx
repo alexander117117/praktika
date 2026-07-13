@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { ArrowLeft, Check, Eye, RotateCcw } from "lucide-react";
+import { ArrowLeft, Check, RotateCcw } from "lucide-react";
+import { DuoIcon } from "@/components/DuoIcon";
 import { Topbar } from "@/components/Topbar";
 import { useProgress } from "@/store/useProgress";
 import { ALL_QUESTIONS, getTopic } from "@/data/topics";
@@ -228,7 +229,7 @@ export function Study() {
           ) : (
             <div className="study-actions">
               <button className="btn btn-primary btn-block" onClick={() => setRevealed(true)}>
-                <Eye size={16} />
+                <DuoIcon name="eye" size={16} />
                 Показать ответ
               </button>
             </div>
