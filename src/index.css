@@ -1555,10 +1555,13 @@ button.sync-badge {
   inset: 16px;
   border-radius: var(--radius-xl);
   background-color: #101322;
-  background-image: linear-gradient(200deg, rgba(11, 12, 14, 0) 40%, rgba(11, 12, 14, 0.55)),
-    url("https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=1600&q=80");
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+}
+.auth-hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(200deg, rgba(11, 12, 14, 0) 40%, rgba(11, 12, 14, 0.55));
+  pointer-events: none;
 }
 .auth-testimonials {
   position: absolute;

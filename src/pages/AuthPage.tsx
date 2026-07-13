@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { chooseGuestMode, useAuth } from "@/auth/AuthContext";
+import { ShaderBackground } from "@/components/ui/shader-r";
 import { supabase } from "@/lib/supabase";
 
 const YANDEX_ERRORS: Record<string, string> = {
@@ -235,7 +236,10 @@ export function AuthPage() {
       </section>
 
       <section className="auth-hero">
-        <div className="auth-hero-img a-hero" />
+        <div className="auth-hero-img a-hero">
+          <ShaderBackground />
+          <div className="auth-hero-shade" />
+        </div>
         <div className="auth-testimonials">
           {TESTIMONIALS.map((t, i) => (
             <div className={`t-card a-el ${i === 0 ? "a-d8" : "a-d9 t-card-second"}`} key={t.name}>
