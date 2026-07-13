@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Table--Streamline-Core" height="14" width="14">
+  <desc>
+    Table Streamline Icon: https://streamlinehq.com
+  </desc>
+  <g id="table">
+    <path id="Union" fill="#8fbffa" fill-rule="evenodd" d="M2 0.5C1.17157 0.5 0.5 1.17157 0.5 2v10c0 0.8284 0.67157 1.5 1.5 1.5h10c0.8284 0 1.5 -0.6716 1.5 -1.5V2c0 -0.82843 -0.6716 -1.5 -1.5 -1.5H2Z" clip-rule="evenodd" stroke-width="1"></path>
+    <path id="Intersect" fill="#2859c5" fill-rule="evenodd" d="M0.5 3.99829h3.875V0.5h1.25v3.49829H13.5v1.25H5.625v3.50317H13.5v1.25004H5.625V13.5h-1.25v-3.4985H0.5V8.75146h3.875V5.24829H0.5v-1.25Z" clip-rule="evenodd" stroke-width="1"></path>
+  </g>
+</svg>

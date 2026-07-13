@@ -4,8 +4,10 @@ import { Dashboard } from "@/pages/Dashboard";
 import { Topics } from "@/pages/Topics";
 import { Study } from "@/pages/Study";
 import { ProgressPage } from "@/pages/ProgressPage";
+import { AuthPage } from "@/pages/AuthPage";
 
 const router = createBrowserRouter([
+  { path: "/auth", element: <AuthPage /> },
   {
     element: <AppLayout />,
     children: [

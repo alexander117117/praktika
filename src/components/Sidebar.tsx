@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   ListChecks,
@@ -8,12 +7,11 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { useAuth } from "@/auth/AuthContext";
-import { AuthModal } from "./AuthModal";
 import { TOPICS } from "@/data/topics";
 
 export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { enabled, user, signOut } = useAuth();
-  const [authOpen, setAuthOpen] = useState(false);
+  const navigate = useNavigate();
 
   const initial = (user?.email ?? "Г").charAt(0).toUpperCase();
   const name = user?.email ?? "Гость";
@@ -62,13 +60,11 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
               <LogOut size={16} />
             </button>
           ) : (
-            <button className="btn btn-sm" onClick={() => setAuthOpen(true)}>
+            <button className="btn btn-sm" onClick={() => navigate("/auth")}>
               Войти
             </button>
           ))}
       </div>
-
-      {authOpen && <AuthModal onClose={() => setAuthOpen(false)} />}
     </aside>
   );
 }

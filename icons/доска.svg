@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Board--Streamline-Core" height="14" width="14">
+  <desc>
+    Board Streamline Icon: https://streamlinehq.com
+  </desc>
+  <g id="board">
+    <path id="Union" fill="#8fbffa" fill-rule="evenodd" d="M2 0.5C1.17157 0.5 0.5 1.17157 0.5 2v10c0 0.8284 0.67157 1.5 1.5 1.5h10c0.8284 0 1.5 -0.6716 1.5 -1.5V2c0 -0.82843 -0.6716 -1.5 -1.5 -1.5H2Z" clip-rule="evenodd" stroke-width="1"></path>
+    <path id="Union_2" fill="#2859c5" fill-rule="evenodd" d="M3 3.5c0 -0.27614 0.22386 -0.5 0.5 -0.5h2c0.27614 0 0.5 0.22386 0.5 0.5v7c0 0.2761 -0.22386 0.5 -0.5 0.5h-2c-0.27614 0 -0.5 -0.2239 -0.5 -0.5v-7Zm5 0c0 -0.27614 0.22386 -0.5 0.5 -0.5h2c0.2761 0 0.5 0.22386 0.5 0.5V6c0 0.27614 -0.2239 0.5 -0.5 0.5h-2c-0.27614 0 -0.5 -0.22386 -0.5 -0.5V3.5Z" clip-rule="evenodd" stroke-width="1"></path>
+  </g>
+</svg>

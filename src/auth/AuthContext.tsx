@@ -16,6 +16,7 @@ interface AuthValue {
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: string | null }>;
   signUp: (email: string, password: string) => Promise<{ error: string | null }>;
+  resetPassword: (email: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
 }
 
@@ -56,6 +57,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     signUp: async (email, password) => {
       if (!supabase) return { error: "Supabase не настроен" };
       const { error } = await supabase.auth.signUp({ email, password });
+      return { error: error?.message ?? null };
+    },
+    resetPassword: async (email) => {
+      if (!supabase) return { error: "Supabase не настроен" };
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin,
+      });
       return { error: error?.message ?? null };
     },
     signOut: async () => {

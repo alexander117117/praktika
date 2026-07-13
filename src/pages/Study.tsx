@@ -173,11 +173,13 @@ export function Study() {
               </span>
               <span>Знаю: {known} · Повторить: {repeat}</span>
             </div>
-            <div className="bar">
+            <div className="bar-flux">
               <span
-                className="seg-learned"
+                className="bf-fill"
                 style={{ width: `${(answered / queue.length) * 100}%` }}
-              />
+              >
+                <span className="bf-sheen" />
+              </span>
             </div>
           </div>
 
